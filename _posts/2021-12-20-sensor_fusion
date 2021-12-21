@@ -43,7 +43,7 @@ Quando apenas um instrumento não consegue cobrir toda área a ser mensurada, ma
 Um aplicação que a fusão de sensores pode ser encarregada é a medidição de dados indiretamente, ou melhor,  estimação. Ainda não há tecnologia suficnete para realizar a medida da temperatura da cauda de um foguete, ou para medir o degaste de Pneus de carro de Formula 1, mas mesmo assim é possivel obter uma estimação de como estes dados estção se comportando. 
 Como é possivél obter a medição dos a modelagem maemática do destes sistemas, com o uso do filtro de Kalman, é possivél  estimação destas variáveis, se esta são [observáveis](https://en.wikipedia.org/wiki/Observability).
 
-Os filtros de kalman são aplicados para realizar a estimação de estados, onde é considerado os dados dos sistema real, os dados do sistema modelado, e  partir do ganho ganho K há uma balanciamento para entre os dados dos dois sistemas. O ganho K é calculado em função da covariância  dos dados dos sistemas, quanto maior a covaranica, menor será o ganho atribuido ao modelo.  
+Os filtros de kalman são aplicados para realizar a estimação de estados, onde é considerado os dados dos sistema real, os dados do sistema modelado, e  partir do ganho ganho K há uma balanciamento para entre os dados dos dois sistemas. O ganho K é calculado em função da [covariância](https://en.wikipedia.org/wiki/Covariance) dos dados dos sistemas, quanto maior a covaranica, menor será o ganho atribuido ao modelo.  
 
 {:.center}
 [![drawing550](../assets/img/2021-12-20-sensor_fusion/kalman_filter.png)](../assets/img/2021-12-20-sensor_fusion/kalman_filter.png)
@@ -51,30 +51,37 @@ Os filtros de kalman são aplicados para realizar a estimação de estados, onde
 
 ### Crição de novos dados
 
-Um aplicação que usa  fusão e que esta crescendo nos ultimos anos, e criação de novos dados. Nesta criação, é usado dois, ou mais, dados para obter um novo. Um bom exemplo é a aplicação  de câmera digital juntamente com lidar para criar uma nuvem pontos com dados sobre as cores dos elementos. O lidar é responsável pela obtenção das numvens de pontos, a camêra consegue obter dados visuis do ambiente, e assim as cores dos elementos. Com o uso de algortmos de inteligência artificial, há umaa fusão de dados e a numvem de pontos que possui dados sobre as cores são gerados.
+Um aplicação que usa  fusão e que esta crescendo nos ultimos anos, e criação de novos dados. Nesta criação,são usados dois, ou mais, dados para obter um novo. Um bom exemplo é a aplicação  de câmera digital juntamente com lidar para criar uma nuvem pontos com dados sobre as cores dos elementos. O lidar é responsável pela obtenção das numvens de pontos, a camêra consegue obter dados visuis do ambiente, e assim as cores dos elementos. Com o uso de algortmos de inteligência artificial, há umaa fusão de dados e a numvem de pontos que possui dados sobre as cores são gerados.
 
-Dois pesquisadores do unidade dedica a robótica do Senai-Cimate: Matheus França e Tiago Souza realizaram um fussão com camera e lidar dentro do simulador no gazebo. O resultado são exebidos nas figuras
+Dois pesquisadores do unidade dedicada a pesquisa e desenvolvimento na área de robótica do Senai-Cimate: [Matheus França](https://www.linkedin.com/in/matheus-fran%C3%A7a-b62044150/) e [Tiago Souza](https://github.com/engtpsouza) realizaram um fussão com camera e lidar dentro do simulador no gazebo. O resultado são exibidos nas figuras
 
-[![drawing550](../assets/img/2021-12-20-sensor_fusion/souza_franca1.png)](../assets/img/2021-12-20-sensor_fusion/souza_franca1.png)
+[![drawing550](../assets/img/2021-12-20-sensor_fusion/new_data.png)](../assets/img/2021-12-20-sensor_fusion/new_data.png)
+
+
+### Aumento da qualidade dos dados
+
+Um situação comum na robótica é quando apenas um unúnico sensor não conseguer mensurar corretamente os dados da odometria. Isso implicar bastante na navegação autônoma já que, as ações de controles são realizadas com dados que não retratam muito bem a atual dinâmica, e o robô passa a atuar de forma inadequada.
+
+Para contornar esse problema, fusão de sensores são ultlizados para melhorar a qualidade do sinal. O Filtro de Kalman, assim como sua versão para sistema não lineares, o filtro de kalman extendindo melhoram a qualidade dos dados e tornam mais próximos dos dados reais, além de estimar dados de variáveis observáveis.
+
+A Figura abaixo apresenta uma representação de aplicação de um filtro de kalman para fusão de sensores para melhorar a coletar de dados da medição da posição de um robô. No gráfico é possivel perceber que os dados dos sensores, Pos Sensor e Wheel sensor, estão apresentando uma grande variabilidade. Mas os dados filtrado a partir da fusão, filter, apresentam uma certa suavidade.
+
+
+
+[![drawing550](../assets/img/2021-12-20-sensor_fusion/qualidade.png)](../assets/img/2021-12-20-sensor_fusion/qualidade.png)
+
+Este gráfico está presente no [Notebook](https://colab.research.google.com/drive/1G0LTEOHRc8FBg3PAgu8uzaVPgPn1B5gd?usp=sharing), que apresenta uma breve introdução sobre Filtro de kalmam aplicado para fusão de sensores. Também há uma revisão sobre alguns conceitos sobre estastisica, caso o leitor já sinta seguro e familiarizado sobre os conceitos, sugiro que pule esta parte.
+
+
+
 
 <br>
-
-[![drawing550](../assets/img/2021-12-20-sensor_fusion/souza_franca2.png)](../assets/img/2021-12-20-sensor_fusion/souza_franca2.png)
-
-
-#
-<br>
-
-{:.center}
-[![drawing550](../assets/img/2021-12-20-turtlebot-dijkstra/dij2.gif)](../assets/img/2021-12-20-turtlebot-dijkstra/dij2.gif)
- 
+<iframe src ="
+https://drive.google.com/file/d/1rhzWInXQev4B_oJt1n-9WmxWxP5TmhDy/view?usp=sharing" width='740' height='430' allowfullscreen mozallowfullscreen webkitallowfullscreen></iframe>
 
 
- 
- 
 
 
-<br>
 
 
 ---------------------
